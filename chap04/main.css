@@ -1,0 +1,141 @@
+:root{
+    --color-primary: #0B0B0B;
+    --color-secondary: #1E2832;
+    --font-primary: 'Roboto', sans-serif;
+}
+body{
+    font-family: var(--font-primary);
+    color: #000;
+}
+.btn{
+    border-radius: 0;
+}
+.header-wrapper{
+    background: #F1F1F1;
+}
+.logo{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-menu .navbar-nav .nav-link{
+    padding: 15px 20px;
+}
+/* ====== ACCOUNT ==== */
+.account__link{
+    display: inline-block;
+    margin: 0 10px;
+    color: var(--color-primary)
+}
+.account__icon{
+    margin-right: 5px;
+}
+
+/* ======BANNER===== */
+.banner{
+    padding: 70px 0;
+}
+.banner__title{
+    font-size: 74px;
+    font-weight: 300;
+    line-height: 55px;
+}
+.banner__description{
+    font-size: 30px;
+    line-height: 55px;
+}
+.banner__btn{
+    font-size:  29px;
+    border-radius: 0;
+}
+
+/* ===== BRANDS ===== */
+.brands{
+    padding: 30px 0;
+}
+/* ====== FEATURE PRODUCT =====*/
+.feature-product .container{
+    position: relative;
+}
+.feature-product-explore{
+    font-size: 34px;
+    text-transform: uppercase;
+
+    position: absolute;
+    top: 50%;left: -300px;
+    transform: rotate(-90deg);
+    z-index: 999;
+}
+/* ===== PRODUCT ITEM ==== */
+
+.product-image{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 23px;
+}
+.product-image:hover .product__info{
+    bottom: 0;
+}
+.product__info{
+    position: absolute;
+    bottom: -100%;
+    left: 0; right: 0;
+    background: var(--color-secondary);
+    color: #fff;
+
+    transition: ease-in-out 0.3s;
+}
+.product__name{
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+}
+.product-meta{
+    padding: 10px 0;
+}
+.product__category{
+    font-size: 16px;
+    color: #777;
+    text-decoration: none;
+}
+.product__price{
+    font-size: 16px;
+}
+.product__price--old{
+    text-decoration: line-through;
+    margin-right: 10px;
+    color: #777777
+}
+.product__price--new{
+    color: #FF6F61;
+}
+.product__sale{
+    position: absolute;
+    top: 20px;left: 0;
+    background: #000;
+    color: #fff;
+    padding: 3px 10px;
+}
+/* SECTION COMMON */
+.section-header{
+    padding: 100px 0;
+}
+.section-header__title{
+    font-size: 45px;
+    font-weight: 500;
+    text-align: center;
+}
+/* BLOCK FILTER */
+.block-filter{
+    padding: 15px 0;
+}
+.block-filter__link{
+    color: #777;
+}
+.block-filter__item:first-child .block-filter__link{
+    padding-left: 0;
+}
+.block-filter__link--active{
+    color: #000
+}

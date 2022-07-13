@@ -1,5 +1,6 @@
 :root{
     --color-primary: #0B0B0B;
+    --color-secondary: #1E2832;
     --font-primary: 'Roboto', sans-serif;
 }
 body{
@@ -38,4 +39,38 @@ body{
 .banner__btn{
     font-size:  29px;
     border-radius: 0;
+}
+
+/* ===== BRANDS ===== */
+.brands{
+    padding: 30px 0;
+}
+/* ====== FEATURE PRODUCT =====*/
+.feature-product .container{
+    position: relative;
+}
+.feature-product-image{
+    position: relative;
+    overflow: hidden;
+}
+.feature-product-image:hover .feature-product__info{
+    bottom: 0;
+}
+.feature-product__info{
+    position: absolute;
+    bottom: -100%;
+    left: 0; right: 0;
+    background: var(--color-secondary);
+    color: #fff;
+
+    transition: ease-in-out 0.3s;
+}
+.feature-product-explore{
+    font-size: 34px;
+    text-transform: uppercase;
+
+    position: absolute;
+    top: 50%;left: -300px;
+    transform: rotate(-90deg);
+    z-index: 999;
 }
