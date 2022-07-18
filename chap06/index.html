@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="info">
+            <p>{{name}}</p>
+            <p>{{age}}</p>
+            <hr />
+            <p>Tên: {{info.name}}</p>
+            <p>Tuổi {{info.age}}</p>
+            <p>Tình trạng: {{isMarried ? 'Đã kết hôn' : 'Chưa kết hôn'}}</p>
+            <p>{{info.run()}}</p>
+            <p>{{info.children[0]}}</p>
+            <hr />
+            <hr />
+            {{myName}}
+            <h3 ng-bind="myName"></h3>
+            <input type="text" ng-model="myName" />
+
+            {{running()}}
+            <button ng-click="increase()">Cộng</button>
+            <button ng-click="toggle()">Toggle</button>
+            <p>{{count}}</p>
+            <hr />
+            {{isToggled ? 'true': 'false'}}
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+            const app = angular.module("myApp", []);
+            app.controller("info", function ($scope) {
+                $scope.isMarried = true;
+                $scope.isToggled = true;
+                // $scope.myName = "Le Trong Dat";
+                // $scope.info = {
+                //     children: [],
+                //     name: "",
+                //     isMarried: true,
+                //     picture: "https://picsum.photos/400/400",
+                //     age: 50,
+                //     children: ["Kien", "Lam"],
+                //     run: function () {
+                //         console.log("method run");
+                //     },
+                // };
+
+                // $scope.running = function () {
+                //     console.log("ahihi");
+                // };
+
+                $scope.count = 0;
+                $scope.increase = function () {
+                    $scope.count++;
+                    $scope.isMarried = false;
+                };
+                $scope.toggle = function () {
+                    $scope.isToggled = !$scope.isToggled;
+                };
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="info">
+            <input type="text" ng-model="username" />
+            <button ng-click="showName()">Show Name</button>
+            {{greeting}}
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+            const app = angular.module("myApp", []);
+            app.controller("info", function ($scope) {
+                $scope.username = "";
+                $scope.greeting = "";
+
+                $scope.showName = function () {
+                    $scope.greeting = `Hello ${$scope.username}`;
+                    $scope.username = "";
+                };
+            });
+            // template string
+        </script>
+    </body>
+</html>
