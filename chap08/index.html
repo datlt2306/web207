@@ -56,11 +56,8 @@
                     { id: 4, name: "Product 4", price: 500 },
                     { id: 5, name: "Product 5", price: 600 },
                 ];
-                $scope.removeItem = function (id) {
-                    const newProducts = $scope.productList.filter(function (product) {
-                        return product.id != id;
-                    });
-                    $scope.productList = newProducts;
+                $scope.removeItem = (id) => {
+                    $scope.productList = $scope.productList.filter((product) => product.id != id);
                 };
             });
         </script>
