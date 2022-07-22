@@ -29,7 +29,9 @@
                         <td>{{product.name}}</td>
                         <td>{{product.price}}</td>
                         <td width="200" class="text-center">
-                            <button class="btn btn-danger">Xóa</button>
+                            <button class="btn btn-danger" ng-click="removeItem(product.id)">
+                                Xóa
+                            </button>
                             <button class="btn btn-info text-white">Update</button>
                         </td>
                     </tr>
@@ -54,6 +56,12 @@
                     { id: 4, name: "Product 4", price: 500 },
                     { id: 5, name: "Product 5", price: 600 },
                 ];
+                $scope.removeItem = function (id) {
+                    const newProducts = $scope.productList.filter(function (product) {
+                        return product.id != id;
+                    });
+                    $scope.productList = newProducts;
+                };
             });
         </script>
     </body>
