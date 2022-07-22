@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="products">
+            <table>
+                <tr ng-repeat="product in productList">
+                    <td>{{$index + 1}}</td>
+                    <td>{{product.name}}</td>
+                </tr>
+            </table>
+            <button ng-click="addProduct({id: 2, name: 'product B'})">Add Product</button>
+            <button ng-click="editProduct({id: 1, name: 'product A update'})">
+                Update Product
+            </button>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+            const app = angular.module("myApp", []);
+            app.controller("products", function ($scope) {
+                $scope.productList = [{ id: 1, name: "Product A" }];
+
+                $scope.addProduct = function (item) {
+                    $scope.productList.push(item);
+                    console.log($scope.productList);
+                };
+                $scope.editProduct = function (item) {
+                    const newProducts = $scope.productList.map((product) =>
+                        product.id == item.id ? item : product
+                    );
+
+                    $scope.productList = newProducts;
+                };
+            });
+        </script>
+    </body>
+</html>
