@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bootstrap demo</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body ng-app="myApp">
+        <div class="container" ng-controller="products">
+            <form action="" ng-submit="formSubmit($event)">
+                <div class="mb-3">
+                    <label for="username" class="label-control">Username</label>
+                    <input id="username" type="text" class="form-control" ng-model="user.username">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="label-control">Password</label>
+                    <input type="password" class="form-control" ng-model="user.password">
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" ng-model="user.remember"> <label for="" class="label-control">Remember</label>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="label-control">Are you Gay?</label>
+                    Yes,<input type="radio" value="0" ng-model="user.gender"> 
+                    No, <input type="radio" value="1" ng-model="user.gender">
+                    Gần Yes<input type="radio" value="2" ng-model="user.gender"> 
+                </div>
+                <div class="mb-3">
+                    <label for="" class="label-control">Sở thích</label>
+                    <input type="checkbox" ng-model="user.all"> All
+                    <input type="checkbox" ng-checked="all" ng-model="user.reading"> Reading
+                    <input type="checkbox" ng-checked="all" ng-model="user.writing"> Writing
+                </div>
+                <div class="mb-3">
+                    <label for="" class="label-control">Country</label>
+                    <select name="" id="" ng-model="user.country">
+                        <option value="{{country}}" ng-repeat="country in user.countries">{{country}}</option>
+                    </select>
+                </div>
+                <button>Submit</button>
+
+                {{user | json}}
+            </form>
+            
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+            const app = angular.module("myApp", []);
+
+            app.controller("products", function ($scope) {
+               $scope.user = {
+                    username: "",
+                    password: "",
+                    remember: false,
+                    gender: 0,
+                    all: false,
+                    countries: ['Viet Nam', "Lao", "Campuchia"],
+                    country: ""
+               };
+               $scope.formSubmit = function(e){
+                    e.preventDefault();
+                    console.log($scope.user.country);
+               }
+            });
+        </script>
+    </body>
+</html>
