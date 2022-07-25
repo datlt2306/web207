@@ -32,22 +32,23 @@
                             <button class="btn btn-danger" ng-click="removeItem(product.id)">
                                 Xóa
                             </button>
-                            <button class="btn btn-info text-white">Update</button>
+                            <button class="btn btn-info text-white" ng-click="getItem(product.id)">Update</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <hr>
             <h2>Cập nhật</h2>
-            <form action="">
-                <input type="text" />
+            <form action="" ng-submit="updateItem($event)">
+                <input type="text" ng-model="currentItem.name" />
                 <button class="btn btn-primary">Update</button>
             </form>
 
             <hr>
             <h2>Thêm sản phẩm</h2>
-            <form action="">
-                <input type="text">
+            <form action="" ng-submit="addItem($event)">
+                <input type="text" ng-model="product.name">
+                <input type="text" ng-model="product.price">
                 <button  class="btn btn-primary">Thêm</button>
             </form>
         </div>
@@ -62,6 +63,14 @@
             const app = angular.module("myApp", []);
 
             app.controller("products", function ($scope) {
+                $scope.product = {
+                    name: "",
+                    price: 0
+                }
+                $scope.currentItem = {
+                    name: "",
+                    price: 0
+                }
                 $scope.productList = [
                     { id: 1, name: "Product 1", price: 200 }, // product
                     { id: 2, name: "Product 2", price: 300 }, // product
@@ -72,6 +81,25 @@
                 $scope.removeItem = (id) => {
                     $scope.productList = $scope.productList.filter((product) => product.id != id);
                 };
+                $scope.addItem = (e) => {
+                    e.preventDefault();
+                    const product = {
+                        id: $scope.productList.length + 1,
+                        name: $scope.product.name,
+                        price: $scope.product.price
+                    }
+                    $scope.productList.push(product)
+                }
+                $scope.getItem = (id) => {
+                    const currentItem = $scope.productList.find(product => product.id == id);
+                    $scope.currentItem = currentItem
+                }
+                $scope.updateItem = function(e){
+                    e.preventDefault();
+                    const newProducts = $scope.productList.map(product => product.id == $scope.currentItem.id ? $scope.currentItem : product);
+                    console.log(newProducts);
+                    // $scope.productList = newProducts;
+                }
             });
         </script>
     </body>
