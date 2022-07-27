@@ -7,11 +7,10 @@
         <title>Document</title>
     </head>
     <body ng-app="myApp">
-        <nav ng-include="'./components/header.html'"></nav>
-        <ng-view></ng-view>
-        <nav ng-include="'./components/footer.html'"></nav>
-        <script src="./js/angular.min.js"></script>
-        <script src="./js/angular-route.js"></script>
+        <ng-include src="'./app.html'"></ng-include>
+        <!-- Include framework angular -->
+        <script src="./js/lib/angular.min.js"></script>
+        <script src="./js/lib/angular-route.min.js"></script>
         <script src="./js/routes.js"></script>
         <script src="./controllers/product.controller.js"></script>
         <script src="./js/index.js"></script>
