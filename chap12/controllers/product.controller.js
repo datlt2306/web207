@@ -5,16 +5,13 @@ function productController($scope, $http, $routeParams) {
     };
     $scope.productList = [];
     const id = $routeParams.id;
-    // Mặc định lấy danh sách sản phẩm và hiển thị ra ngoài
-    const getProducts = () => {
-        $http.get(API).then(({ data }) => ($scope.productList = data));
-    };
-    getProducts();
 
+    // Mặc định lấy danh sách sản phẩm và hiển thị ra ngoài
+    (() => {
+        $http.get(API).then(({ data }) => ($scope.productList = data));
+    })();
     const getItemProduct = async () => {
-        // Chờ API call xong
-        const { data } = await $http.get(`${API}/${id}`);
-        $scope.product = await data;
+        $http.get(`${API}/${id}`).then(({ data }) => ($scope.product = data));
     };
     if (id) {
         getItemProduct();
