@@ -1,0 +1,19 @@
+<a href="#!product/add">Thêm sản phẩm</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tên</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="product in productList">
+            <td>{{$index + 1}}</td>
+            <td>{{product.name}}</td>
+            <td width="200">
+                <button class="btn btn-danger" ng-click="removeItem(product.id)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

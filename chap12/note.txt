@@ -1,0 +1,11 @@
+B1: npm init -y
+B2: npm i -g json-server
+B3: tạo 1 file db.json ở thư mục gốc với nội dung
+    {
+        "products": [
+            {"id": "1", "name":"product a"},
+            {"id": "2", "name":"product b"},
+            {"id": "3", "name":"product c"}
+        ]
+    }
+B4: json-server ./db.json --watch
