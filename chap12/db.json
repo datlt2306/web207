@@ -1,16 +1,30 @@
 {
-  "products": [
-    {
-      "id": "3",
-      "name": "product c  updated"
-    },
-    {
-      "name": "product B",
-      "id": "xH9YHcF"
-    },
-    {
-      "name": "aihih",
-      "id": "KfRXmzz"
-    }
-  ]
+    "products": [
+        {
+            "name": "product c  updated",
+            "id": "1",
+            "cateId": 1
+        },
+        {
+            "name": "product B",
+            "id": "2",
+            "cateId": 1
+        },
+        {
+            "name": "aihih",
+            "id": "3",
+            "cateId": 2
+        }
+    ],
+    "cates": [
+        { "id": 1, "name": "Category A" },
+        { "id": 2, "name": "Category B" }
+    ],
+    "users": [
+        {
+            "email": "admin@gmail.com",
+            "password": "$2a$10$jPC1eE0z6AnRso./vnwN5.09KqrfD3aBHO6AytPGCowRY6BdoM9H2",
+            "id": 1
+        }
+    ]
 }

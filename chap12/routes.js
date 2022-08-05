@@ -19,6 +19,14 @@ function routes($routeProvider) {
             templateUrl: "pages/product-detail.html",
             controller: "productController",
         })
+        .when("/register", {
+            templateUrl: "pages/register.html",
+            controller: "authController",
+        })
+        .when("/login", {
+            templateUrl: "pages/login.html",
+            controller: "authController",
+        })
         .when("/404", {
             templateUrl: "pages/notFound.html",
         })
