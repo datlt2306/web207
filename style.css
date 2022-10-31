@@ -1,0 +1,15 @@
+.navbar {
+    background: orange;
+}
+.nav-link {
+    color: red;
+}
+.nav-link:hover {
+    color: green;
+}
+.post {
+    border: none;
+}
+.post img {
+    border-radius: 0;
+}
