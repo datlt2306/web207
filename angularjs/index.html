@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div ng-controller="myController">
+            <div>Profile name: {{profile.name}}</div>
+            <div>Profile name: {{profile.age}}</div>
+            <div>Profile married: {{profile.isMarried ? 'Đã kết hôn' : "Đã chết"}}</div>
+            <div>Profile street: {{profile.address.street}}</div>
+            <div>Profile city: {{profile.address.city}}</div>
+            <div ng-bind="profile.address.state"></div>
+            <div>Profile runing: {{profile.running()}}</div>
+            <input type="text" ng-model="profile.name" />
+            {{count}}
+            <button ng-click="increment()">Button</button>
+        </div>
+        <div ng-controller="cartController">{{cart[0].name}}</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+        <script>
+            angular
+                .module("myApp", [])
+                .controller("myController", function ($scope) {
+                    $scope.profile = {
+                        name: "John",
+                        age: 30,
+                        isMarried: false,
+                        address: {
+                            street: "123 Main St",
+                            city: "New York",
+                            state: "NY",
+                        },
+                        running: function () {
+                            return `${$scope.profile.name} is running`;
+                        },
+                    };
+                    $scope.count = 0;
+                    $scope.increment = function () {
+                        $scope.count++;
+                    };
+                })
+                .controller("cartController", function ($scope) {
+                    $scope.cart = [
+                        { name: "Iphone", price: 1000 },
+                        { name: "Samsung", price: 2000 },
+                        { name: "Nokia", price: 3000 },
+                    ];
+                });
+        </script>
+    </body>
+</html>
