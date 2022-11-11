@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div ng-controller="cartController">
+            <form ng-submit="addProduct()">
+                <input type="text" ng-model="product.name" />
+                <input type="price" ng-model="product.price" />
+                <button>Add</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in carts">
+                        <td>{{$index + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <button ng-click="removeItem(item.id)">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Tổng tiền</td>
+                        <td>{{total}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <script src="./angularjs.min.js"></script>
+        <script>
+            angular.module("myApp", []).controller("cartController", function ($scope) {
+                $scope.carts = [
+                    { id: 1, name: "Iphone", price: 1000 },
+                    { id: 2, name: "Samsung", price: 2000 },
+                    { id: 3, name: "Nokia", price: 3000 },
+                ];
+                $scope.removeItem = function (id) {
+                    $scope.carts = $scope.carts.filter((item) => item.id !== id);
+                };
+
+                $scope.total = $scope.carts.reduce((accumulator, nextValue) => {
+                    return accumulator + nextValue.price;
+                }, 0);
+
+                $scope.product = {
+                    name: "",
+                    price: 0,
+                };
+                $scope.addProduct = (e) => {
+                    console.log($scope.product);
+                };
+            });
+        </script>
+    </body>
+</html>

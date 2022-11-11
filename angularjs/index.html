@@ -17,10 +17,33 @@
             <div>Profile runing: {{profile.running()}}</div>
             <input type="text" ng-model="profile.name" />
             {{count}}
-            <button ng-click="increment()">Button</button>
+            <button ng-mousemove="increment()">Button</button>
+
+            <hr />
+            <div ng-show="profile.isMarried">Đã có gia đình</div>
         </div>
-        <div ng-controller="cartController">{{cart[0].name}}</div>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+        <div ng-controller="cartController">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in newCart">
+                        <td>{{$index + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <button ng-click="removeItem(item.id)">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="./angularjs.min.js"></script>
         <script>
             angular
                 .module("myApp", [])
@@ -44,11 +67,14 @@
                     };
                 })
                 .controller("cartController", function ($scope) {
-                    $scope.cart = [
-                        { name: "Iphone", price: 1000 },
-                        { name: "Samsung", price: 2000 },
-                        { name: "Nokia", price: 3000 },
+                    $scope.carts = [
+                        { id: 1, name: "Iphone", price: 1000 },
+                        { id: 2, name: "Samsung", price: 2000 },
+                        { id: 3, name: "Nokia", price: 3000 },
                     ];
+                    $scope.removeItem = function (id) {
+                        $scope.carts = $scope.carts.filter((item) => item.id !== id);
+                    };
                 });
         </script>
     </body>
