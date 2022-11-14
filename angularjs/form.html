@@ -10,6 +10,16 @@
         <form ng-submit="onSubmit()" ng-controller="formController">
             <input type="text" ng-model="product.name" />
             <input type="price" ng-model="product.price" />
+            <input type="radio" value="statu-a" ng-model="product.radio" />
+            <input type="radio" value="statu-b" ng-model="product.radio" />
+            <input type="radio" value="statu-c" ng-model="product.radio" />
+            <input type="checkbox" ng-model="product.status" /> Còn hàng<br />
+            Danh mục
+            <select name="" id="" ng-model="product.category">
+                <option value="danh-muc-a" selected>Danh mục A</option>
+                <option value="danh-muc-b">Danh mục B</option>
+                <option value="danh-muc-c">Danh mục C</option>
+            </select>
             <button>Submit</button>
         </form>
 
@@ -21,10 +31,11 @@
                 $scope.products = [];
 
                 $scope.onSubmit = function () {
-                    $scope.products.push({
-                        id: $scope.products.length + 1,
-                        ...$scope.product,
-                    });
+                    console.log($scope.product);
+                    // $scope.products.push({
+                    //     id: $scope.products.length + 1,
+                    //     ...$scope.product,
+                    // });
                 };
             });
         </script>
