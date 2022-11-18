@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div ng-controller="productController" class="container my-5">
+            <table class="table table-bordered">
+                <tr ng-repeat="product in products">
+                    <td>{{ $index + 1}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" ng-click="getProduct(product.id)">
+                            Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" ng-click="removeProduct(product.id)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="row">
+                <div class="col">
+                    <form ng-submit="addProduct()">
+                        <h2>Add Product</h2>
+                        <div class="mb-3">
+                            <input type="text" ng-model="product.name" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" ng-model="product.price" class="form-control" />
+                        </div>
+                        <button class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form ng-submit="editProduct()">
+                        <h2>Update Product</h2>
+                        <div class="mb-3">
+                            <input type="text" ng-model="product2.name" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" ng-model="product2.price" class="form-control" />
+                        </div>
+                        <button class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+            angular.module("myApp", []).controller("productController", ($scope, $http) => {
+                $scope.products = [];
+                $scope.product = {};
+                $scope.api = "https://5e79b4b817314d00161333da.mockapi.io/product";
+
+                $http.get($scope.api).then((response) => {
+                    $scope.products = response.data;
+                });
+                $scope.getProduct = function (id) {
+                    $http.get(`${$scope.api}/${id}`).then((response) => {
+                        $scope.product2 = response.data;
+                    });
+                };
+                $scope.addProduct = function () {
+                    $http.post($scope.api, $scope.product).then((response) => {
+                        alert("Ban da them thanh cong");
+                        $scope.products.push(response.data);
+                    });
+                };
+                $scope.removeProduct = async (id) => {
+                    // try {
+                    //     const confirm = window.confirm("Are you ok??");
+                    //     if (confirm) {
+                    //         const { data } = await $http.delete(`${$scope.api}/${id}`);
+                    //         if (data) {
+                    //             $scope.products = $scope.products.filter(
+                    //                 (item) => item.id !== data.id
+                    //             );
+                    //         }
+                    //     }
+                    // } catch (error) {
+                    //     console.log(error); // { messsage: "", statusCode: 404}
+                    // }
+                    const confirm = window.confirm("Are you ok??");
+                    if (confirm) {
+                        $http
+                            .delete(`${$scope.api}/${id}`)
+                            .then(function (response) {
+                                if (response.data) {
+                                    $scope.products = $scope.products.filter(
+                                        (item) => item.id !== response.data.id
+                                    );
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                };
+                $scope.updateProduct = function () {
+                    $http
+                        .put(`${$scope.api}/${$scope.product2.id}`, $scope.product2)
+                        .then((response) => {
+                            $scope.products = $scope.products.map((item) =>
+                                // nếu item.id bằng với id mà mình click vào thì lấy sản phẩm mới (product 2)
+                                // ngược lại thì vẫn giữ nguyên sản phẩm cũ
+                                item.id == $scope.product2.id ? $scope.product2 : item
+                            );
+                        });
+                };
+            });
+        </script>
+    </body>
+</html>

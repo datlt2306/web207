@@ -1,0 +1,38 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "price": 100,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "price": 200,
+      "quantity": 2
+    },
+    {
+      "name": "product 3",
+      "price": "3000",
+      "id": 3
+    },
+    {
+      "name": "Product 4",
+      "price": "111111",
+      "id": 4
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1",
+      "content": "Content 1"
+    },
+    {
+      "id": 2,
+      "title": "Post 2",
+      "content": "Content 2"
+    }
+  ]
+}
