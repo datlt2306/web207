@@ -22,24 +22,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="./controllers/product.js"></script>
         <script>
-            const app = angular.module("myApp", ["ngRoute"]);
-            app.config(function ($routeProvider) {
-                $routeProvider
-                    .when("/", {
-                        templateUrl: "./pages/home.html",
-                    })
-                    .when("/product", {
-                        templateUrl: "pages/product.html",
-                        controller: "productController",
-                    })
-                    .when("/404", {
-                        templateUrl: "pages/404.html",
-                    })
-                    .otherwise({
-                        redirectTo: "/404",
-                    });
-            });
-            app.controller("productController", productController);
+            const app = angular
+                .module("myApp", ["ngRoute"])
+                .config(function ($routeProvider) {
+                    $routeProvider
+                        .when("/", {
+                            templateUrl: "./pages/home.html",
+                        })
+                        .when("/product", {
+                            templateUrl: "pages/product.html",
+                            controller: "productController",
+                        })
+                        .when("/404", {
+                            templateUrl: "pages/404.html",
+                        })
+                        .otherwise({
+                            redirectTo: "/404",
+                        });
+                })
+                .controller("productController", productController);
         </script>
     </body>
 </html>
