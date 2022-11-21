@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        />
+    </head>
+    <body>
+        <header>
+            <a href="#!/">Home</a>
+            <a href="#!product">Product</a>
+        </header>
+        <ng-view></ng-view>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="./controllers/product.js"></script>
+        <script>
+            const app = angular.module("myApp", ["ngRoute"]);
+            app.config(function ($routeProvider) {
+                $routeProvider
+                    .when("/", {
+                        templateUrl: "./pages/home.html",
+                    })
+                    .when("/product", {
+                        templateUrl: "pages/product.html",
+                        controller: "productController",
+                    })
+                    .when("/404", {
+                        templateUrl: "pages/404.html",
+                    })
+                    .otherwise({
+                        redirectTo: "/404",
+                    });
+            });
+            app.controller("productController", productController);
+        </script>
+    </body>
+</html>
