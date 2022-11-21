@@ -33,6 +33,10 @@
                             templateUrl: "pages/product.html",
                             controller: "productController",
                         })
+                        .when("/product/:id", {
+                            templateUrl: "pages/product-detail.html",
+                            controller: "productController",
+                        })
                         .when("/404", {
                             templateUrl: "pages/404.html",
                         })
